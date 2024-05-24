@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 
-#include "core/project_settings.h"
-#include "core/class_db.h"
+#include "core/config/project_settings.h"
+#include "core/object/class_db.h"
 
 #import "godot_plugin_class.h"
 #import "godot_plugin-Swift.h"
