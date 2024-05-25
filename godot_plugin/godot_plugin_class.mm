@@ -79,7 +79,7 @@ Variant nsobject_to_variant(NSObject *object) {
     if ([object isKindOfClass:[NSString class]]) {
         return from_nsstring((NSString *)object);
     } else if ([object isKindOfClass:[NSData class]]) {
-        PoolByteArray ret;
+        PackedByteArray ret;
         NSData *data = (NSData *)object;
         if ([data length] > 0) {
             ret.resize([data length]);
@@ -143,8 +143,8 @@ NSObject *variant_to_nsobject(Variant v) {
         return to_nsdictionary(v);
     } else if (v.get_type() == Variant::ARRAY) {
         return to_nsarray(v);
-    } else if (v.get_type() == Variant::POOL_BYTE_ARRAY) {
-        PoolByteArray arr = v;
+    } else if (v.get_type() == Variant::PACKED_BYTE_ARRAY) {
+        PackedByteArray arr = v;
         // PackedByteArray::Read r = arr.read();
         NSData *result = [NSData dataWithBytes:arr.read().ptr() length:arr.size()];
         return result;
