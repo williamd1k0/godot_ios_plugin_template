@@ -12,6 +12,7 @@ xcodebuild archive \
     -archivePath "./bin/ios_release.xcarchive" \
     -sdk iphoneos \
     -arch arm64 \
+    "OTHER_CPLUSPLUSFLAGS=-std=c++17 -Igodot/platform/ios" \
     "OTHER_SWIFT_FLAGS=${SWIFT_FLAGS}" \
     SKIP_INSTALL=NO \
     GCC_PREPROCESSOR_DEFINITIONS="PluginClass=${CLASS}" || exit 1
@@ -23,6 +24,7 @@ xcodebuild archive \
     -archivePath "./bin/sim_release.xcarchive" \
     -sdk iphonesimulator \
     -arch x86_64 \
+    "OTHER_CPLUSPLUSFLAGS=-std=c++17 -Igodot/platform/ios" \
     "OTHER_SWIFT_FLAGS=${SWIFT_FLAGS}" \
     SKIP_INSTALL=NO \
     GCC_PREPROCESSOR_DEFINITIONS="PluginClass=${CLASS}" || exit 1
@@ -35,6 +37,7 @@ xcodebuild archive \
     -sdk iphoneos \
     -arch arm64 \
     -configuration Debug \
+    "OTHER_CPLUSPLUSFLAGS=-std=c++17 -Igodot/platform/ios" \
     "OTHER_SWIFT_FLAGS=${SWIFT_FLAGS}" \
     SKIP_INSTALL=NO \
     GCC_PREPROCESSOR_DEFINITIONS="DEBUG_ENABLED=1 PluginClass=${CLASS}" || exit 1
@@ -47,6 +50,7 @@ xcodebuild archive \
     -sdk iphonesimulator \
     -arch x86_64 \
     -configuration Debug \
+    "OTHER_CPLUSPLUSFLAGS=-std=c++17 -Igodot/platform/ios" \
     "OTHER_SWIFT_FLAGS=${SWIFT_FLAGS}" \
     SKIP_INSTALL=NO \
     GCC_PREPROCESSOR_DEFINITIONS="DEBUG_ENABLED=1 PluginClass=${CLASS}" || exit 1

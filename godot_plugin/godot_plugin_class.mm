@@ -85,7 +85,7 @@ Variant nsobject_to_variant(NSObject *object) {
             ret.resize([data length]);
             {
                 // PackedByteArray::Write w = ret.write();
-                copymem((void *)ret.read().ptr(), [data bytes], [data length]);
+                memcpy((void *)ret.ptr(), [data bytes], [data length]);
             }
         }
         return ret;
@@ -133,7 +133,7 @@ Variant nsobject_to_variant(NSObject *object) {
 NSObject *variant_to_nsobject(Variant v) {
     if (v.get_type() == Variant::STRING) {
         return to_nsstring((String)v);
-    } else if (v.get_type() == Variant::REAL) {
+    } else if (v.get_type() == Variant::FLOAT) {
         return [NSNumber numberWithDouble:(double)v];
     } else if (v.get_type() == Variant::INT) {
         return [NSNumber numberWithLongLong:(long)(int)v];
@@ -146,7 +146,7 @@ NSObject *variant_to_nsobject(Variant v) {
     } else if (v.get_type() == Variant::PACKED_BYTE_ARRAY) {
         PackedByteArray arr = v;
         // PackedByteArray::Read r = arr.read();
-        NSData *result = [NSData dataWithBytes:arr.read().ptr() length:arr.size()];
+        NSData *result = [NSData dataWithBytes:arr.ptr() length:arr.size()];
         return result;
     }
     WARN_PRINT(String("Could not add unsupported type to iCloud: '" + Variant::get_type_name(v.get_type()) + "'").utf8().get_data());
