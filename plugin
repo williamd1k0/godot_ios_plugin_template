@@ -79,6 +79,7 @@ name="{display_name}"
 binary="{plname}.xcframework"
 initialization="{cpp_plname}_init"
 deinitialization="{cpp_plname}_deinit"
+use_swift_runtime=true
 
 [dependencies]
 linked=[]
@@ -158,9 +159,9 @@ void """+cpp_plname+"""_deinit() {
         with open('generate_static_library.sh', 'w') as f:
             for l in lines:
                 if l.startswith('OUT='):
-                    f.write('OUT=${OUT:'+plname+'}\n')
+                    f.write('OUT=${OUT:-'+plname+'}\n')
                 elif l.startswith('CLASS='):
-                    f.write('CLASS=${CLASS:'+display_name+'}\n')
+                    f.write('CLASS=${CLASS:-'+display_name+'}\n')
                 else:
                     f.write(l + '\n')
     except IOError as e:

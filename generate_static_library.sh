@@ -2,8 +2,8 @@
 
 SCHEME=${1:-godot_plugin}
 PROJECT=${2:-godot_plugin.xcodeproj}
-OUT=${OUT:godot_example}
-CLASS=${CLASS:PluginExample}
+OUT=${OUT:-godot_example}
+CLASS=${CLASS:-PluginExample}
 
 xcodebuild archive \
     -quiet \
